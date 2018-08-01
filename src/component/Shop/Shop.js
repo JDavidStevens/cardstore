@@ -31,7 +31,6 @@ export default class Shop extends Component {
         </div>
       );
     });
-    return;
-    <div className="storefront-container">{productDisplay}</div>;
+    return <div className="storefront-container">{productDisplay}</div>;
   }
 }
