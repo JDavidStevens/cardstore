@@ -1,23 +1,31 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import Home from './component/Home';
-import Shop from './component/Shop';
-import Cart from './component/Cart';
-import Admin from './component/Admin';
+import { Link } from 'react-router-dom';
+import route from './route';
 
 class App extends Component {
   render() {
     return (
       <div className="App">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
+          <img
+            src="https://i.pinimg.com/originals/b1/2f/5b/b12f5b83c4d14b7c9ba0595ce22db00a.jpg"
+            // {logo}
+            className="App-logo"
+            alt="logo"
+          />
+          <h1 className="App-title">Inkin' Cute!</h1>
+          <nav>
+            <Link to="/">Home</Link>
+            <Link to="/shop">Shop</Link>
+            <Link to="/cart">Cart</Link>
+          </nav>
         </header>
-        <Home />
-        <Shop />
-        <Cart />
-        <Admin />
+        <footer>
+          <Link to="/admin">Admin</Link>
+        </footer>
+        {route}
       </div>
     );
   }
