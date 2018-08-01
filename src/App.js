@@ -16,12 +16,16 @@ class App extends Component {
             alt="logo"
           />
           <h1 className="App-title">Inkin' Cute!</h1>
-          <nav>
+          <nav className="links">
             <Link to="/">Home</Link>
             <Link to="/shop">Shop</Link>
             <Link to="/cart">Cart</Link>
           </nav>
         </header>
+        <img
+          src="https://i.pinimg.com/originals/9d/82/2e/9d822ee3874e8ea0a045a60388bcdf46.jpg"
+          className="background"
+        />
         <footer>
           <Link to="/admin">Admin</Link>
         </footer>
