@@ -7,6 +7,14 @@ class NavBar extends Component {
     super();
     this.state = {};
   }
+
+  login() {
+    let { REACT_APP_DOMAIN, REACT_APP_CLIENT_ID } = process.env;
+    let url = `${window.location.origin}/auth/callback`;
+
+    window.location = `https://${REACT_APP_DOMAIN}/authorize?client_id=${REACT_APP_CLIENT_ID}&scope=openid%20profile%20email&redirect_uri=${url}&response_type=code`;
+  }
+
   render() {
     return (
       <div>
@@ -30,7 +38,9 @@ class NavBar extends Component {
                 <Link to="/shop">Shop</Link>
               </li>
               <li>
-                <Link to="/cart">Cart</Link>
+                <Link to="/cart" onClick={this.login}>
+                  Cart
+                </Link>
               </li>
             </ul>
           </div>
