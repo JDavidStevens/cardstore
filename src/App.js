@@ -15,7 +15,7 @@ class App extends Component {
             className="App-logo"
             alt="logo"
           />
-          <h1 className="App-title">Inkin' Cute!</h1>
+          <h1 className="App-title">Inkin' Cute Ideas!</h1>
           <nav className="links">
             <Link to="/">Home</Link>
             <Link to="/shop">Shop</Link>

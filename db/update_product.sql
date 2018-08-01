@@ -1,0 +1,1 @@
+Update Products Set price = $4 where product_id =$1;

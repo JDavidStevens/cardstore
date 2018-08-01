@@ -1,0 +1,1 @@
+Create table Customers(customer_id, first_name, last_name, email, product_id) Values($1,$2,$3,$4,$5);
