@@ -1,5 +1,5 @@
 .App {
-  text-align: center;
+  text-align: left;
 }
 
 .App-logo {
@@ -17,10 +17,19 @@
 .App-title {
   font-size: 1.5em;
   color: lightcoral;
+  text-align: center;
+}
+
+.links {
+  text-align: right;
+  color: lightcoral;
 }
 
 .App-intro {
   font-size: large;
+}
+.background {
+  width: 100%;
 }
 
 @keyframes App-logo-spin {
