@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { Route } from 'react-router-dom';
+import Footer from '../Footer/Footer';
+import Admin from '../Admin/Admin';
 
 export default class Shop extends Component {
   constructor() {

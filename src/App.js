@@ -4,6 +4,8 @@ import NavBar from './component/NavBar/NavBar';
 import Home from './component/Home/Home';
 import Cart from './component/Cart/Cart';
 import Shop from './component/Shop/Shop';
+import Footer from './component/Footer/Footer';
+import Admin from './component/Admin/Admin';
 import { Route, Switch } from 'react-router-dom';
 // import route from './route';
 
@@ -39,6 +41,7 @@ class App extends Component {
     return (
       <div className="App">
         <NavBar />
+        <Footer />
         <Switch>
           <Route exact path="/" component={Home} />
           <Route
@@ -58,6 +61,7 @@ class App extends Component {
               );
             }}
           />
+          <Route path="/admin" component={Admin} />
         </Switch>
       </div>
 
