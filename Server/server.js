@@ -60,7 +60,7 @@ app.get('/auth/callback', async (req, res) => {
 
     res.redirect('/#/cart');
   } else {
-    let createdUser = await db.create_customer([name, email, sub, picture]);
+    let createdUser = await db.create_customer([sub, name, email, picture]);
 
     req.session.user = createdUser[0];
     res.redirect('/#/cart');

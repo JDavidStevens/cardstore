@@ -7,10 +7,9 @@ Create table Products(
 );
 
 Create table Customers(
-    id serial primary key not null
+    id serial primary key not null,
     auth_id text,
     name Varchar(75),
     email Varchar(75),
-    picture text,
-    
+    picture text
     );
