@@ -1,1 +1,1 @@
-Select * from Customers where customer_id= $1;
+Select * from Customers where auth_id= $1;

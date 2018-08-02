@@ -7,10 +7,10 @@ Create table Products(
 );
 
 Create table Customers(
-    customer_id Serial Primary Key Not Null,
-    first_name Varchar(40),
-    last_name Varchar(45),
+    id serial primary key not null
+    auth_id text,
+    name Varchar(75),
     email Varchar(75),
-    product_id Integer,
-    Foreign Key(product_id) References Products(product_id)
+    picture text,
+    
     );

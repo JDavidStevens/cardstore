@@ -1,0 +1,1 @@
+Insert Into Customers(auth_id, name, email,picture) Values($1,$2,$3,$4);
