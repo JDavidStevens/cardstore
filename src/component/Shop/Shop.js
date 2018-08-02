@@ -12,6 +12,7 @@ export default class Shop extends Component {
 
   componentDidMount() {
     axios.get('/api/products').then(response => {
+      console.log(response);
       this.setState({
         products: response.data
       });
