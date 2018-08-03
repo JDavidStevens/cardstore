@@ -12,11 +12,21 @@ export default class Admin extends Component {
       img: '',
       name: '',
       description: '',
-      picture: ''
+      picture: '',
+      products: []
     };
 
     this.handlePhoto = this.handlePhoto.bind(this);
     this.sendPhoto = this.sendPhoto.bind(this);
+  }
+
+  componentDidMount() {
+    axios.get('/api/products').then(response => {
+      console.log(response);
+      this.setState({
+        products: response.data
+      });
+    });
   }
   handlePhoto(event) {
     const reader = new FileReader();
@@ -28,8 +38,7 @@ export default class Admin extends Component {
         file: photo.target.result,
         filename: file.name,
         filetype: file.type,
-        img: '',
-        newProduct: {}
+        img: ''
       });
     };
 
@@ -57,8 +66,17 @@ export default class Admin extends Component {
       this.setState({ newProduct: response.data });
     });
   }
-
+  updatePrice(event) {}
   render() {
+    let productDisplay = this.state.products.map((element, index) => {
+      return (
+        <div className="product-container" key={index}>
+          <h2>{element.name}</h2>
+          <img src={element.picture} alt="" />
+          <h3>{'$' + element.price}</h3>
+        </div>
+      );
+    });
     return (
       <div>
         <input type="file" id="real" onChange={this.handlePhoto} />
@@ -93,6 +111,16 @@ export default class Admin extends Component {
             onChange={e => this.handleNewPicture(e.target.value)}
           />
           <button onClick={this.createNewCard}>Add</button>
+        </div>
+        <div className="current-inventory">
+          {productDisplay}
+          <input
+            id="updatePrice"
+            placeholder="Update Price"
+            onChange={e => this.updatePrice(e.target.value)}
+          />
+          <button onClick={this.updatePrice}>Update</button>
+          <button onClick={this.deleteProduct}>Delete</button>
         </div>
       </div>
     );

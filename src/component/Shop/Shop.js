@@ -24,7 +24,7 @@ export default class Shop extends Component {
       return (
         <div className="product-container" key={index}>
           <h2>{element.name}</h2>
-          <img src={element.image} alt="" />
+          <img src={element.picture} alt="" />
           <h3>{'$' + element.price}</h3>
           <button onClick={() => this.props.addToShoppingCart(element)}>
             Purchase!
