@@ -1,8 +1,9 @@
 Create table Products(
     product_id Serial Primary Key Not Null,
-    product_name Varchar(50),
-    image Text,
-    price decimal
+    name Varchar(50),
+    description Varchar(50),
+    price decimal,
+    picture Text,
 
 );
 
