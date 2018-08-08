@@ -1,0 +1,1 @@
+Insert Into picture (picture_id,image,product_description)Values($1,$2,$3);
