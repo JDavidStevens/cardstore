@@ -14,6 +14,7 @@ export default class Admin extends Component {
     };
 
     this.createNewCard = this.createNewCard.bind(this);
+    this.updatePrice = this.updatePrice.bind(this);
   }
 
   componentDidMount() {
@@ -40,12 +41,13 @@ export default class Admin extends Component {
     this.setState({ picture: value });
   }
   createNewCard() {
-    let { name, description, price } = this.state;
+    let { name, description, price, picture } = this.state;
     return axios
       .post('/api/product', {
         product_name: name,
         product_description: description,
-        price: price
+        price: price,
+        picture: picture
       })
       .then(response => {
         this.setState({ products: response.data });
@@ -55,19 +57,36 @@ export default class Admin extends Component {
     this.setState({ price: value });
   }
 
-  updatePrice(id, price) {
-    axios.post(`/api/product?id=${id}`, { price }).then(results => {
+  updatePrice(product_id, price) {
+    console.log(product_id, price);
+    axios.put(`/api/product/${product_id}`, { price }).then(results => {
       this.setState({ products: results.data });
+      console.log(results);
     });
   }
 
   render() {
-    let productDisplay = this.state.products.map((element, index) => {
+    console.log('this.state.products', this.state.products);
+    let inventory = this.state.products.map((element, index) => {
       return (
-        <div className="product-container" key={index}>
-          <h2>{element.name}</h2>
+        <div className="inventory-container" key={index}>
+          <h2>{element.product_name}</h2>
+          <h3>{element.product_description}</h3>
           <h3>{'$' + element.price}</h3>
           <img src={element.picture} alt="" />
+          <input
+            id="updatePrice"
+            placeholder="Update Price"
+            onChange={e => this.handleUpdatePrice(e.target.value)}
+          />
+          <button
+            onClick={() =>
+              this.updatePrice(element.product_id, this.state.price)
+            }
+          >
+            Update
+          </button>
+          <button onClick={this.deleteProduct}>Delete</button>
         </div>
       );
     });
@@ -92,24 +111,24 @@ export default class Admin extends Component {
             placeholder="Price"
             onChange={e => this.handleNewCardPrice(e.target.value)}
           />
-          {/* <br /> */}
-          {/* <input
+          <br />
+          <input
             type="text"
             id="new-card-img"
             placeholder="Image URL"
             onChange={e => this.handleNewPicture(e.target.value)}
-          /> */}
+          />
           <button onClick={this.createNewCard}>Add</button>
         </div>
         <div className="current-inventory">
-          {productDisplay}
-          <input
+          {inventory}
+          {/* <input
             id="updatePrice"
             placeholder="Update Price"
             onChange={e => this.handleUpdatePrice(e.target.value)}
           />
           <button onClick={this.updatePrice}>Update</button>
-          <button onClick={this.deleteProduct}>Delete</button>
+          <button onClick={this.deleteProduct}>Delete</button> */}
         </div>
       </div>
     );

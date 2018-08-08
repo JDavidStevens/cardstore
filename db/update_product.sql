@@ -1,1 +1,1 @@
-Update Products Set price = $4 where product_id =$1;
+Update Products Set price = $2 where product_id = $1 returning *;

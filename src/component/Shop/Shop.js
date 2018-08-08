@@ -23,8 +23,8 @@ export default class Shop extends Component {
     let productDisplay = this.state.products.map((element, index) => {
       return (
         <div className="product-container" key={index}>
-          <h2>{element.name}</h2>
-          <h3>{element.description}</h3>
+          <h2>{element.product_name}</h2>
+          <h3>{element.product_description}</h3>
           <h3>{'$' + element.price}</h3>
           <img src={element.picture} alt="" />
           <button onClick={() => this.props.addToShoppingCart(element)}>
