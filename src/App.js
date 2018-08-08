@@ -41,7 +41,7 @@ class App extends Component {
     return (
       <div className="App">
         <NavBar />
-        <Footer />
+
         <Switch>
           <Route exact path="/" component={Home} />
           <Route
@@ -63,6 +63,7 @@ class App extends Component {
           />
           <Route path="/admin" component={Admin} />
         </Switch>
+        <Footer />
       </div>
 
       // <div className="App">

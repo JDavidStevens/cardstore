@@ -11,8 +11,8 @@ require('dotenv').config();
 
 const app = express();
 
-app.use(bodyParser.json({ limit: '50mb' }));
-app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
+app.use(bodyParser.json());
+
 const {
   REACT_APP_DOMAIN,
   REACT_APP_CLIENT_ID,
@@ -87,43 +87,43 @@ app.get('/api/user-data', (req, res) => {
   }
 });
 
-AWS.config.update({
-  accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-  secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
-  region: process.env.AWS_REGION
-});
+// AWS.config.update({
+//   accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+//   secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+//   region: process.env.AWS_REGION
+// });
 
-const S3 = new AWS.S3();
+// const S3 = new AWS.S3();
 
-app.post('/api/s3', (req, res) => {
-  const photo = req.body;
+// app.post('/api/s3', (req, res) => {
+//   const photo = req.body;
 
-  const buf = new Buffer(
-    photo.file.replace(/^data:image\/\w+;base64,/, ''),
-    'base64'
-  );
+//   const buf = new Buffer(
+//     photo.file.replace(/^data:image\/\w+;base64,/, ''),
+//     'base64'
+//   );
 
-  const params = {
-    Bucket: process.env.AWS_BUCKET,
-    Body: buf,
-    Key: photo.filename,
-    ContentType: photo.filetype,
-    ACL: 'public-read'
-  };
+//   const params = {
+//     Bucket: process.env.AWS_BUCKET,
+//     Body: buf,
+//     Key: photo.filename,
+//     ContentType: photo.filetype,
+//     ACL: 'public-read'
+//   };
 
-  S3.upload(params, (err, data) => {
-    let response, code;
-    if (err) {
-      response = err;
-      code = 500;
-    } else {
-      response = data;
-      code = 200;
-    }
+//   S3.upload(params, (err, data) => {
+//     let response, code;
+//     if (err) {
+//       response = err;
+//       code = 500;
+//     } else {
+//       response = data;
+//       code = 200;
+//     }
 
-    res.status(code).send(response);
-  });
-});
+//     res.status(code).send(response);
+//   });
+// });
 
 const port = 3005;
 app.listen(port, () => {

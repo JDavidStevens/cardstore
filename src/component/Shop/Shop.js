@@ -12,7 +12,7 @@ export default class Shop extends Component {
 
   componentDidMount() {
     axios.get('/api/products').then(response => {
-      console.log(response);
+      // console.log(response);
       this.setState({
         products: response.data
       });
@@ -24,8 +24,9 @@ export default class Shop extends Component {
       return (
         <div className="product-container" key={index}>
           <h2>{element.name}</h2>
-          <img src={element.picture} alt="" />
+          <h3>{element.description}</h3>
           <h3>{'$' + element.price}</h3>
+          <img src={element.picture} alt="" />
           <button onClick={() => this.props.addToShoppingCart(element)}>
             Purchase!
           </button>

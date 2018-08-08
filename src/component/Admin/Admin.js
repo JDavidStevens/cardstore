@@ -6,18 +6,14 @@ export default class Admin extends Component {
     super();
 
     this.state = {
-      file: '',
-      filename: '',
-      filetype: '',
-      img: '',
       name: '',
       description: '',
+      price: '',
       picture: '',
       products: []
     };
 
-    this.handlePhoto = this.handlePhoto.bind(this);
-    this.sendPhoto = this.sendPhoto.bind(this);
+    this.createNewCard = this.createNewCard.bind(this);
   }
 
   componentDidMount() {
@@ -28,28 +24,6 @@ export default class Admin extends Component {
       });
     });
   }
-  handlePhoto(event) {
-    const reader = new FileReader();
-
-    const file = event.target.files[0];
-
-    reader.onload = photo => {
-      this.setState({
-        file: photo.target.result,
-        filename: file.name,
-        filetype: file.type,
-        img: ''
-      });
-    };
-
-    reader.readAsDataURL(file);
-  }
-
-  sendPhoto(event) {
-    return axios.post('/api/s3', this.state).then(response => {
-      this.setState({ img: response.data.location });
-    });
-  }
 
   handleNewCardName(value) {
     this.setState({ name: value });
@@ -58,32 +32,48 @@ export default class Admin extends Component {
   handleNewCardDescription(value) {
     this.setState({ description: value });
   }
+
+  handleNewCardPrice(value) {
+    this.setState({ price: value });
+  }
   handleNewPicture(value) {
     this.setState({ picture: value });
   }
-  createNewCard(event) {
-    return axios.post('api/product').then(response => {
-      this.setState({ newProduct: response.data });
+  createNewCard() {
+    let { name, description, price, picture } = this.state;
+    return axios
+      .post('/api/product', {
+        name: name,
+        description: description,
+        price: price,
+        picture: picture
+      })
+      .then(response => {
+        this.setState({ products: response.data });
+      });
+  }
+  handleUpdatePrice(value) {
+    this.setState({ price: value });
+  }
+
+  updatePrice(id, price) {
+    axios.post(`/api/product?id=${id}`, { price }).then(results => {
+      this.setState({ products: results.data });
     });
   }
-  updatePrice(event) {}
+
   render() {
     let productDisplay = this.state.products.map((element, index) => {
       return (
         <div className="product-container" key={index}>
           <h2>{element.name}</h2>
-          <img src={element.picture} alt="" />
           <h3>{'$' + element.price}</h3>
+          <img src={element.picture} alt="" />
         </div>
       );
     });
     return (
       <div>
-        <input type="file" id="real" onChange={this.handlePhoto} />
-        <button onClick={this.sendPhoto}>upload</button>
-        <div>
-          <img src={this.state.img} alt="none" />
-        </div>
         <div>
           <h3>New Card</h3>
           <input
@@ -117,7 +107,7 @@ export default class Admin extends Component {
           <input
             id="updatePrice"
             placeholder="Update Price"
-            onChange={e => this.updatePrice(e.target.value)}
+            onChange={e => this.handleUpdatePrice(e.target.value)}
           />
           <button onClick={this.updatePrice}>Update</button>
           <button onClick={this.deleteProduct}>Delete</button>

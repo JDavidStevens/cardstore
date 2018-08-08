@@ -1,11 +1,9 @@
 Create table Products(
     product_id Serial Primary Key Not Null,
-    name Varchar(50),
-    description Varchar(50),
+    product_name Varchar(50),
+    product_description Varchar(50),
     price decimal,
-    picture Text,
-
-);
+    picture Text);
 
 Create table Customers(
     id serial primary key not null,
