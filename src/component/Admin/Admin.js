@@ -40,13 +40,12 @@ export default class Admin extends Component {
     this.setState({ picture: value });
   }
   createNewCard() {
-    let { name, description, price, picture } = this.state;
+    let { name, description, price } = this.state;
     return axios
       .post('/api/product', {
-        name: name,
-        description: description,
-        price: price,
-        picture: picture
+        product_name: name,
+        product_description: description,
+        price: price
       })
       .then(response => {
         this.setState({ products: response.data });
@@ -93,13 +92,13 @@ export default class Admin extends Component {
             placeholder="Price"
             onChange={e => this.handleNewCardPrice(e.target.value)}
           />
-          <br />
-          <input
+          {/* <br /> */}
+          {/* <input
             type="text"
             id="new-card-img"
             placeholder="Image URL"
             onChange={e => this.handleNewPicture(e.target.value)}
-          />
+          /> */}
           <button onClick={this.createNewCard}>Add</button>
         </div>
         <div className="current-inventory">

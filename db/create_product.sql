@@ -1,5 +1,4 @@
-Insert Into Products(product_id, name, description, price, picture) Values ($1,$2,$3,$4,$5);
+Insert Into Products(product_id, product_name, product_description, price) Values ($1,$2,$3,$4);
 
 
 
--- need help with Foreign Key
