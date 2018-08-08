@@ -1,1 +1,0 @@
-Select * from picture where picture_id=$1;
