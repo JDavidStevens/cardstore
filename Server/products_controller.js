@@ -45,6 +45,7 @@ module.exports = {
 
     dbInstance
       .update_product([params.product_id, body.price])
+      //params has correct id, but product_id is undefined
       .then(products => {
         console.log(products);
         res.status(200).send(products);
