@@ -44,7 +44,7 @@ module.exports = {
     const { params, body } = req;
 
     dbInstance
-      .update_product([params.product_id, body.price])
+      .update_product([params.id, body.price])
       //params has correct id, but product_id is undefined
       .then(products => {
         console.log(products);
@@ -60,8 +60,9 @@ module.exports = {
     const { params } = req;
 
     dbInstance
-      .delete_product(params.id)
+      .delete_product([params.id])
       .then(() => res.sendStatus(200))
+      //changed from res.sendStatus(200)
       .catch(err => {
         res.status(500).send({ errorMessage: 'Oops! Something went wrong.' });
         console.log(err);

@@ -58,14 +58,14 @@ export default class Admin extends Component {
     this.setState({ price: value });
   }
 
-  updatePrice(product_id, price) {
+  updatePrice(price, product_id) {
     console.log(product_id, price);
 
     axios
       .put(`/api/product/${product_id}/${price}`)
       //price and product_id are correct up to this point
       .then(results => {
-        this.setState({ products: results.data });
+        this.setState({ products: results.data.products });
         console.log(results);
         //results and products are not defined
       });
@@ -79,31 +79,33 @@ export default class Admin extends Component {
 
   render() {
     console.log('this.state.products', this.state.products);
-    let inventory = this.state.products.map(element => {
-      return (
-        <div className="inventory-container" key={element.product_id}>
-          <h2>{element.product_name}</h2>
-          <h3>{element.product_description}</h3>
-          <h3>{'$' + element.price}</h3>
-          <img src={element.picture} alt="" />
-          <input
-            id="updatePrice"
-            placeholder="Update Price"
-            onChange={e => this.handleUpdatePrice(e.target.value)}
-          />
-          <button
-            onClick={() =>
-              this.updatePrice(element.product_id, this.state.price)
-            }
-          >
-            Update
-          </button>
-          <button onClick={() => this.deleteProduct(element.product_id)}>
-            Delete
-          </button>
-        </div>
-      );
-    });
+    let inventory =
+      this.state.products &&
+      this.state.products.map(element => {
+        return (
+          <div className="inventory-container" key={element.product_id}>
+            <h2>{element.product_name}</h2>
+            <h3>{element.product_description}</h3>
+            <h3>{'$' + element.price}</h3>
+            <img src={element.picture} alt="" />
+            <input
+              id="updatePrice"
+              placeholder="Update Price"
+              onChange={e => this.handleUpdatePrice(e.target.value)}
+            />
+            <button
+              onClick={() =>
+                this.updatePrice(element.product_id, this.state.price)
+              }
+            >
+              Update
+            </button>
+            <button onClick={() => this.deleteProduct(element.product_id)}>
+              Delete
+            </button>
+          </div>
+        );
+      });
     return (
       <div>
         <div>
