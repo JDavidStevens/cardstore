@@ -1,6 +1,17 @@
 import React, { Component } from 'react';
+import axios from 'axios';
+import StripeCheckout from 'react-stripe-checkout';
 
 export default class Cart extends Component {
+  onToken = token => {
+    token.card = void 0;
+    console.log('token', token);
+    axios
+      .post('http://localhost:3005/api/payment', { token, amount: 100 })
+      .then(response => {
+        alert('we are in business');
+      });
+  };
   constructor(props) {
     super(props);
 
@@ -44,6 +55,11 @@ export default class Cart extends Component {
             <h1>Your shopping cart is empty</h1>
           </div>
         )}
+        <StripeCheckout
+          token={this.onToken}
+          stripeKey={stripe.pub_key}
+          amount={1000}
+        />
       </div>
     );
   }
