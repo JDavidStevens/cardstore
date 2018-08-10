@@ -5,7 +5,8 @@ const customerController = require('./customer_controller');
 // const authController = require('./auth_controller');
 const massive = require('massive');
 const session = require('express-session');
-// const AWS = require('aws-sdk');
+const AWS = require('aws-sdk');
+// const stripe = require('stripe')(config.secret_key);
 const cors = require('cors');
 const axios = require('axios');
 require('dotenv').config();
@@ -89,83 +90,84 @@ app.get('/api/user-data', (req, res) => {
   }
 });
 
-app.post('/api/payment', function(req, res, next) {
-  //convert amount to pennies
-  const amountArray = req.body.amount.toString().split('');
-  const pennies = [];
-  for (var i = 0; i < amountArray.length; i++) {
-    if (amountArray[i] === '.') {
-      if (typeof amountArray[i + 1] === 'string') {
-        pennies.push(amountArray[i + 1]);
-      } else {
-        pennies.push('0');
-      }
-      if (typeof amountArray[i + 2] === 'string') {
-        pennies.push(amountArray[i + 2]);
-      } else {
-        pennies.push('0');
-      }
-      break;
-    } else {
-      pennies.push(amountArray[i]);
-    }
-  }
-  const convertedAmt = parseInt(pennies.join(''));
+// app.post('/api/payment', function(req, res, next) {
+//convert amount to pennies
+// const amountArray = req.body.amount.toString().split('');
+// const pennies = [];
+// for (var i = 0; i < amountArray.length; i++) {
+//   if (amountArray[i] === '.') {
+//     if (typeof amountArray[i + 1] === 'string') {
+//       pennies.push(amountArray[i + 1]);
+//     } else {
+//       pennies.push('0');
+//     }
+//     if (typeof amountArray[i + 2] === 'string') {
+//       pennies.push(amountArray[i + 2]);
+//     } else {
+//       pennies.push('0');
+//     }
+//     break;
+//   } else {
+//     pennies.push(amountArray[i]);
+//   }
+// }
+// const convertedAmt = parseInt(pennies.join(''));
 
-  const charge = stripe.charges.create(
-    {
-      amount: convertedAmt, // amount in cents, again
-      currency: 'usd',
-      source: req.body.token.id,
-      description: 'Test charge from react app'
-    },
-    function(err, charge) {
-      if (err) return res.sendStatus(500);
-      return res.sendStatus(200);
-      // if (err && err.type === 'StripeCardError') {
-      //   // The card has been declined
-      // }
-    }
-  );
+// const charge = stripe.charges.create(
+//   {
+//     amount: convertedAmt,
+// amount in cents, again
+//   currency: 'usd',
+//   source: req.body.token.id,
+//   description: 'Test charge from react app'
+// },
+// function(err, charge) {
+//   if (err) return res.sendStatus(500);
+//   return res.sendStatus(200);
+// if (err && err.type === 'StripeCardError') {
+//   // The card has been declined
+// }
+//     }
+//   );
+// });
+
+AWS.config.update({
+  accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+  secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+  region: process.env.AWS_REGION
 });
 
-// AWS.config.update({
-//   accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-//   secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
-//   region: process.env.AWS_REGION
-// });
+const S3 = new AWS.S3();
 
-// const S3 = new AWS.S3();
+app.post('/api/s3', (req, res) => {
+  const photo = req.body;
 
-// app.post('/api/s3', (req, res) => {
-//   const photo = req.body;
+  const buf = new Buffer(
+    photo.file.replace(/^data:image\/\w+;base64,/, ''),
+    'base64'
+  );
 
-//   const buf = new Buffer(
-//     photo.file.replace(/^data:image\/\w+;base64,/, ''),
-//     'base64'
-//   );
+  const params = {
+    Bucket: process.env.AWS_BUCKET,
+    Body: buf,
+    Key: photo.filename,
+    ContentType: photo.filetype,
+    ACL: 'public-read'
+  };
 
-//   const params = {
-//     Bucket: process.env.AWS_BUCKET,
-//     Body: buf,
-//     Key: photo.filename,
-//     ContentType: photo.filetype,
-//     ACL: 'public-read'
-//   };
+  S3.upload(params, (err, data) => {
+    let response, code;
+    if (err) {
+      response = err;
+      code = 500;
+    } else {
+      response = data;
+      code = 200;
+    }
 
-//   S3.upload(params, (err, data) => {
-//     let response, code;
-//     if (err) {
-//       response = err;
-//       code = 500;
-//     } else {
-//       response = data;
-//       code = 200;
-//     }
-
-//     res.status(code).send(response);
-//   });
-// });
+    res.status(code).send(response);
+  });
+});
 
 const port = 3005;
 app.listen(port, () => {

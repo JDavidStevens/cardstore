@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import S3 from './S3';
 
 export default class Admin extends Component {
   constructor() {
@@ -10,12 +11,18 @@ export default class Admin extends Component {
       name: '',
       description: '',
       price: '',
-      picture: ''
+      picture: '',
+      file: '',
+      filename: '',
+      filetype: '',
+      img: ''
     };
 
     this.createNewCard = this.createNewCard.bind(this);
     this.updatePrice = this.updatePrice.bind(this);
     this.deleteProduct = this.deleteProduct.bind(this);
+    this.handlePhoto = this.handlePhoto.bind(this);
+    this.sendPhoto = this.sendPhoto.bind(this);
   }
 
   componentDidMount() {
@@ -77,6 +84,30 @@ export default class Admin extends Component {
     });
   }
 
+  handlePhoto(event) {
+    const reader = new FileReader();
+    // the file itself is located here
+    const file = event.target.files[0];
+
+    // this is an event handler and will not actaully run untill the code on line 39 finishes running
+    reader.onload = photo => {
+      // the photo param here is the processed image from the reader.
+      this.setState({
+        file: photo.target.result,
+        filename: file.name,
+        filetype: file.type,
+        img: ''
+      });
+    };
+    // take the file from the input field and process it at a DataURL (a special way to interpret files)
+    reader.readAsDataURL(file);
+  }
+  sendPhoto(event) {
+    return axios.post('/api/s3', this.state).then(response => {
+      this.setState({ img: response.data.location });
+    });
+  }
+
   render() {
     console.log('this.state.products', this.state.products);
     let inventory =
@@ -108,6 +139,14 @@ export default class Admin extends Component {
       });
     return (
       <div>
+        <div className="S3">
+          <input type="file" id="real" onChange={this.handlePhoto} />
+          <button onClick={this.sendPhoto}>upload</button>
+          <div>
+            <img src={this.state.img} alt="none" />
+          </div>
+        </div>
+
         <div>
           <h3>New Card</h3>
           <input
@@ -136,16 +175,7 @@ export default class Admin extends Component {
           />
           <button onClick={this.createNewCard}>Add</button>
         </div>
-        <div className="current-inventory">
-          {inventory}
-          {/* <input
-            id="updatePrice"
-            placeholder="Update Price"
-            onChange={e => this.handleUpdatePrice(e.target.value)}
-          />
-          <button onClick={this.updatePrice}>Update</button>
-          <button onClick={this.deleteProduct}>Delete</button> */}
-        </div>
+        <div className="current-inventory">{inventory}</div>
       </div>
     );
   }
