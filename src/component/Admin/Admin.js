@@ -116,9 +116,9 @@ export default class Admin extends Component {
       this.state.products.map(element => {
         return (
           <div className="inventory-container" key={element.product_id}>
-            <h2>{element.product_name}</h2>
-            <h3>{element.product_description}</h3>
-            <h3>{'$' + element.price}</h3>
+            <h3>{element.product_name}</h3>
+            <h4>{element.product_description}</h4>
+            <h4>{'$' + element.price}</h4>
             <img src={element.picture} alt="image" />
             <input
               id="updatePrice"
@@ -176,7 +176,10 @@ export default class Admin extends Component {
           />
           <button onClick={this.createNewCard}>Add</button>
         </div>
-        <div className="current-inventory">{inventory}</div>
+        <div className="current-inventory">
+          <h1>Current Inventory</h1>
+          {inventory}
+        </div>
         <Orders />
       </div>
     );

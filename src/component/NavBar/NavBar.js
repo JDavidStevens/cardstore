@@ -38,8 +38,11 @@ class NavBar extends Component {
                 <Link to="/shop">Shop</Link>
               </li>
               <li>
-                <Link to="/cart" onClick={this.login}>
-                  Cart
+                <Link to="/cart">Cart</Link>
+              </li>
+              <li>
+                <Link to="/login" onClick={this.login}>
+                  Login
                 </Link>
               </li>
             </ul>

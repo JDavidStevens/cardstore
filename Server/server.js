@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const productsController = require('./products_controller');
 const customerController = require('./customer_controller');
 const ordersContoller = require('./orders_controller');
+const mid = require('./middleware');
 // const authController = require('./auth_controller');
 const massive = require('massive');
 const session = require('express-session');
@@ -24,6 +25,7 @@ const {
   SESSION_SECRET,
   CONNECTION_STRING
 } = process.env;
+
 app.use(
   session({
     secret: SESSION_SECRET,
@@ -35,6 +37,17 @@ app.use(
 massive(CONNECTION_STRING).then(dbInstance => {
   app.set('db', dbInstance);
 });
+
+app.use(
+  mid.bypassAuthInDevelopment({
+    id: 1,
+    auth_id: 'google-oauth2|117659068388369094461',
+    name: 'David Stevens',
+    email: 'jdavid.stevens@gmail.com',
+    picture:
+      'https://lh5.googleusercontent.com/-Y4NtVJ6T4q8/AAAAAAAAAAI/AAAAAAAAAAA/AAnnY7pcfoZ3ljuM9cISd1lkVF0QoBTLSg/mo/photo.jpg'
+  })
+);
 
 app.get('/auth/callback', async (req, res) => {
   let payload = {
@@ -63,12 +76,12 @@ app.get('/auth/callback', async (req, res) => {
   if (foundUser[0]) {
     req.session.user = foundUser[0];
 
-    res.redirect('/#/cart');
+    res.redirect('/');
   } else {
     let createdUser = await db.create_customer([sub, name, email, picture]);
 
     req.session.user = createdUser[0];
-    res.redirect('/#/cart');
+    res.redirect('/');
   }
 });
 

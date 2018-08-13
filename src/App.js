@@ -4,6 +4,7 @@ import NavBar from './component/NavBar/NavBar';
 import Home from './component/Home/Home';
 import Cart from './component/Cart/Cart';
 import Shop from './component/Shop/Shop';
+import Login from './component/Login/Login';
 import Footer from './component/Footer/Footer';
 import Admin from './component/Admin/Admin';
 import { Route, Switch } from 'react-router-dom';
@@ -62,6 +63,7 @@ class App extends Component {
             }}
           />
           <Route path="/admin" component={Admin} />
+          <Route path="/login" component={Login} />
         </Switch>
         <Footer />
       </div>
