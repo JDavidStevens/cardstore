@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import Orders from './orders';
 import S3 from './S3';
 
 export default class Admin extends Component {
@@ -176,6 +177,7 @@ export default class Admin extends Component {
           <button onClick={this.createNewCard}>Add</button>
         </div>
         <div className="current-inventory">{inventory}</div>
+        <Orders />
       </div>
     );
   }

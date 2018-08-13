@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const productsController = require('./products_controller');
 const customerController = require('./customer_controller');
+const ordersContoller = require('./orders_controller');
 // const authController = require('./auth_controller');
 const massive = require('massive');
 const session = require('express-session');
@@ -71,16 +72,23 @@ app.get('/auth/callback', async (req, res) => {
   }
 });
 
+//products
 app.post('/api/product', productsController.create);
 app.get('/api/products', productsController.getAll);
 app.get('/api/product/:id', productsController.getOne);
 app.put('/api/product/:id', productsController.update);
 app.delete('/api/product/:id', productsController.delete);
 
+//customers
 app.post('/api/customer', customerController.create);
-app.get('/api/customers', customerController.getOne);
+app.get('/api/customers', customerController.getAll);
 app.get('/api/customer/:id', customerController.getOne);
 
+//orders
+app.post('/api/order', ordersContoller.create);
+app.get('/api/orders', ordersContoller.getAll);
+
+//authentication
 app.get('/api/user-data', (req, res) => {
   console.log(req.session);
   if (req.session.user) {
