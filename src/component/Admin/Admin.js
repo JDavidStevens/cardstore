@@ -118,7 +118,7 @@ export default class Admin extends Component {
             <h2>{element.product_name}</h2>
             <h3>{element.product_description}</h3>
             <h3>{'$' + element.price}</h3>
-            <img src={element.picture} alt="" />
+            <img src={element.picture} alt="image" />
             <input
               id="updatePrice"
               placeholder="Update Price"
