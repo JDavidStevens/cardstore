@@ -1,0 +1,1 @@
+Insert into orders(product_id,auth_id)values($1,$2);
