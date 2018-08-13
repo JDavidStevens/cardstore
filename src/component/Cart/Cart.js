@@ -33,11 +33,12 @@ export default class Cart extends Component {
         <div className="shopping-cart-product-container" key={index}>
           <img src={element.image} alt="" />
           <div className="shopping-cart-info">
-            <h2>{element.name}</h2>
+            <h2>{element.product_name}</h2>
             <h2>{'$' + element.price}</h2>
             <div className="shopping-cart-button-container">
+              <button>Purchase</button>
               <button
-                className="shopping-cart-button"
+                className="shopping-cart-delete-button"
                 onClick={() => this.props.removeFromShoppingCart(element)}
               >
                 Remove
@@ -47,6 +48,7 @@ export default class Cart extends Component {
         </div>
       );
     });
+
     return (
       <div className="shopping-cart-container">
         {shoppingCartDisplay[0] ? (
