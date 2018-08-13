@@ -65,14 +65,14 @@ export default class Admin extends Component {
     this.setState({ price: value });
   }
 
-  updatePrice(price, product_id) {
+  updatePrice(product_id, price) {
     console.log(product_id, price);
 
     axios
-      .put(`/api/product/${product_id}/${price}`)
+      .put(`/api/product/${product_id}/`, { price })
       //price and product_id are correct up to this point
       .then(results => {
-        this.setState({ products: results.data.products });
+        this.setState({ products: results.data });
         console.log(results);
         //results and products are not defined
       });
