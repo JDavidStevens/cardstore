@@ -30,9 +30,7 @@ export default class orders extends Component {
     return (
       <div>
         <h1>Client Orders</h1>
-        <ul>
-          <li>{orderTracker}</li>
-        </ul>
+        {orderTracker}
       </div>
     );
   }
