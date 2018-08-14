@@ -27,7 +27,6 @@ module.exports = {
 
   getAll: (req, res, next) => {
     const dbInstance = req.app.get('db');
-    console.log('getting here');
     dbInstance
       .read_products()
       .then(products => {
