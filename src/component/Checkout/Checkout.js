@@ -1,6 +1,28 @@
-// import React from 'react';
-// import axios from 'axios';
-// import StripeCheckout from 'react-stripe-checkout';
+import React, { Component } from 'react';
+import StripeCheckout from 'react-stripe-checkout';
+import stripe from './stripekey';
+import axios from 'axios';
 
-// import STRIPE_PUBLISHABLE from './constants/stripe';
-// import PAYMENT_SERVER_URL from './constants/server';
+class Checkout extends Component {
+  onToken = token => {
+    token.card = void 0;
+    console.log('token', token);
+    axios
+      .post('http://localhost:3005/api/payment', { token, amount: 100 })
+      .then(response => {
+        alert('we are in business');
+      });
+  };
+  render() {
+    return (
+      <div className="Checkout">
+        <StripeCheckout
+          token={this.onToken}
+          stripeKey={stripe.pub_key}
+          amount={1000}
+        />
+      </div>
+    );
+  }
+}
+export default Checkout;
