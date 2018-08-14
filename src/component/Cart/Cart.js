@@ -36,7 +36,12 @@ export default class Cart extends Component {
             <h2>{element.product_name}</h2>
             <h2>{'$' + element.price}</h2>
             <div className="shopping-cart-button-container">
-              <button>Purchase</button>
+              <button
+                className="checkout"
+                onClick={() => this.props.proceedToCheckout(element)}
+              >
+                Checkout
+              </button>
               <button
                 className="shopping-cart-delete-button"
                 onClick={() => this.props.removeFromShoppingCart(element)}

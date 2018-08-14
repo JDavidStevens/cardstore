@@ -11,7 +11,7 @@ module.exports = {
         console.log(err);
       });
   },
-  getAll: (req, res, next) => {
+  read: (req, res, next) => {
     const dbInstance = req.app.get('db');
     dbInstance
       .read_orders()

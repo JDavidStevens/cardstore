@@ -38,6 +38,8 @@ class App extends Component {
     console.log(this.state.shoppingCart);
   }
 
+  proceedToCheckout() {}
+
   render() {
     return (
       <div className="App">

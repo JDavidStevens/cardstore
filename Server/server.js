@@ -38,17 +38,6 @@ massive(CONNECTION_STRING).then(dbInstance => {
   app.set('db', dbInstance);
 });
 
-app.use(
-  mid.bypassAuthInDevelopment({
-    id: 1,
-    auth_id: 'google-oauth2|117659068388369094461',
-    name: 'David Stevens',
-    email: 'jdavid.stevens@gmail.com',
-    picture:
-      'https://lh5.googleusercontent.com/-Y4NtVJ6T4q8/AAAAAAAAAAI/AAAAAAAAAAA/AAnnY7pcfoZ3ljuM9cISd1lkVF0QoBTLSg/mo/photo.jpg'
-  })
-);
-
 app.get('/auth/callback', async (req, res) => {
   let payload = {
     client_id: REACT_APP_CLIENT_ID,
@@ -99,7 +88,7 @@ app.get('/api/customer/:id', customerController.getOne);
 
 //orders
 app.post('/api/order', ordersContoller.create);
-app.get('/api/orders', ordersContoller.getAll);
+app.get('/api/orders', ordersContoller.read);
 
 //authentication
 app.get('/api/user-data', (req, res) => {
@@ -151,44 +140,6 @@ app.get('/api/user-data', (req, res) => {
 //     }
 //   );
 // });
-
-AWS.config.update({
-  accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-  secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
-  region: process.env.AWS_REGION
-});
-
-const S3 = new AWS.S3();
-
-app.post('/api/s3', (req, res) => {
-  const photo = req.body;
-
-  const buf = new Buffer(
-    photo.file.replace(/^data:image\/\w+;base64,/, ''),
-    'base64'
-  );
-
-  const params = {
-    Bucket: process.env.AWS_BUCKET,
-    Body: buf,
-    Key: photo.filename,
-    ContentType: photo.filetype,
-    ACL: 'public-read'
-  };
-
-  S3.upload(params, (err, data) => {
-    let response, code;
-    if (err) {
-      response = err;
-      code = 500;
-    } else {
-      response = data;
-      code = 200;
-    }
-
-    res.status(code).send(response);
-  });
-});
 
 const port = 3005;
 app.listen(port, () => {
