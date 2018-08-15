@@ -1,4 +1,4 @@
-.product-wrapper {
+.inventory-wrapper {
   margin-bottom: 2em;
 }
 
@@ -10,5 +10,5 @@
   background-image: none;
   border: 100px;
   border-radius: 100;
-  background-color: lightcoral;
+  background-color: aquamarine;
 }

@@ -1,6 +1,6 @@
 nav.navbar,
 .navbar-default {
-  background-color: #2892d7 !important;
+  background-color: aqua !important;
 }
 
 .navbar-default {
@@ -10,19 +10,19 @@ nav.navbar,
 }
 
 .navbar-default .navbar-nav > li > a {
-  color: white;
+  color: lightcoral;
 }
 
 .navbar-default .navbar-brand {
-  color: white;
+  color: lightcoral;
 }
 
 .navbar-default .navbar-toggle {
-  border-color: white;
+  border-color: lightcoral;
 }
 
 .navbar-default .navbar-toggle .icon-bar {
-  background-color: white;
+  background-color: lightcoral;
 }
 
 .navbar-default .navbar-toggle:focus,
@@ -32,12 +32,12 @@ nav.navbar,
 
 .navbar-default .navbar-brand:focus,
 .navbar-default .navbar-brand:hover {
-  color: white;
+  color: lightcoral;
   background-color: transparent;
 }
 
 .navbar-default .navbar-nav > li > a:focus,
 .navbar-default .navbar-nav > li > a:hover {
-  color: white;
+  color: lightcoral;
   background-color: transparent;
 }

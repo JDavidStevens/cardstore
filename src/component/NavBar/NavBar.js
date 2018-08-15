@@ -22,15 +22,6 @@ class NavBar extends Component {
         <Navbar.Header>
           <Navbar.Brand>
             <Link to="/">Inkin' Cute Ideas</Link>
-
-            {/* <Link to="/">
-              <img
-                src="https://i.pinimg.com/originals/b1/2f/5b/b12f5b83c4d14b7c9ba0595ce22db00a.jpg"
-                // {logo}
-                className="App-logo"
-                alt="logo"
-              />
-            </Link> */}
           </Navbar.Brand>
           <Navbar.Toggle />
         </Navbar.Header>

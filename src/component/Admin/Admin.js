@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { Grid, Row, Col, Button } from 'react-bootstrap';
 import Orders from './orders';
+import './admin.css';
 
 export default class Admin extends Component {
   constructor() {
@@ -85,29 +87,41 @@ export default class Admin extends Component {
       this.state.products &&
       this.state.products.map(element => {
         return (
-          <div className="inventory-container" key={element.product_id}>
-            <h3>{element.product_name}</h3>
-            <h4>{element.product_description}</h4>
-            <h4>{'$' + element.price}</h4>
-            <img src={element.picture} alt="add" />
-            <div>
-              <input
-                id="updatePrice"
-                placeholder="Update Price"
-                onChange={e => this.handleUpdatePrice(e.target.value)}
-              />
-              <button
-                onClick={() =>
-                  this.updatePrice(element.product_id, this.state.price)
-                }
-              >
-                Update
-              </button>
-              <button onClick={() => this.deleteProduct(element.product_id)}>
-                Delete
-              </button>
-            </div>
-          </div>
+          <Grid>
+            <Row className="inventory-container" key={element.product_id}>
+              <Col xs={12} sm={6} className="inventory-wrapper">
+                <h3>{element.product_name}</h3>
+                <h4>{element.product_description}</h4>
+                <h4>{'$' + element.price}</h4>
+                <div>
+                  <input
+                    id="updatePrice"
+                    placeholder="Update Price"
+                    onChange={e => this.handleUpdatePrice(e.target.value)}
+                  />
+                  <Button
+                    bsStyle="primary"
+                    onClick={() =>
+                      this.updatePrice(element.product_id, this.state.price)
+                    }
+                  >
+                    Update
+                  </Button>
+                  <div>
+                    <br />
+                    <img src={element.picture} alt="add" className="pic" />
+                    <br />
+                    <Button
+                      bsStyle="primary"
+                      onClick={() => this.deleteProduct(element.product_id)}
+                    >
+                      Remove
+                    </Button>
+                  </div>
+                </div>
+              </Col>
+            </Row>
+          </Grid>
         );
       });
     return (
@@ -138,7 +152,9 @@ export default class Admin extends Component {
             placeholder="Image URL"
             onChange={e => this.handleNewPicture(e.target.value)}
           />
-          <button onClick={this.createNewCard}>Add</button>
+          <Button bsStyle="primary" onClick={this.createNewCard}>
+            Add
+          </Button>
         </div>
         <div className="current-inventory">
           <h1>Current Inventory</h1>

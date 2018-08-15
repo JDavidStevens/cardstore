@@ -26,7 +26,7 @@ export default class Shop extends Component {
       return (
         <Grid>
           <Row className="product-container" key={index}>
-            <Col xs={12} sm={4} className="product-wrapper">
+            <Col xs={12} sm={6} className="product-wrapper">
               <h2>{element.product_name}</h2>
               <h3>{element.product_description}</h3>
               <img src={element.picture} alt="" className="pic" />
@@ -35,7 +35,7 @@ export default class Shop extends Component {
                 bsStyle="primary"
                 onClick={() => this.props.addToShoppingCart(element)}
               >
-                Add to Cart!
+                Add To Cart
               </Button>
             </Col>
           </Row>
