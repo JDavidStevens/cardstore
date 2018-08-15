@@ -52,7 +52,7 @@ export default class Admin extends Component {
         picture: picture
       })
       .then(response => {
-        this.setState({ products: response.data });
+        this.setState({ products: response.data.products });
       });
   }
   handleUpdatePrice(value) {
@@ -67,14 +67,14 @@ export default class Admin extends Component {
       //price and product_id are correct up to this point
       .then(results => {
         this.setState({ products: results.data });
-        console.log(results);
-        //results and products are not defined
+
+        // products are not defined
       });
   }
 
   deleteProduct(product_id) {
     axios.delete(`/api/product/${product_id}`).then(results => {
-      this.setState({ products: results.data.products });
+      this.setState({ products: results.data });
     });
   }
 
@@ -88,22 +88,24 @@ export default class Admin extends Component {
             <h3>{element.product_name}</h3>
             <h4>{element.product_description}</h4>
             <h4>{'$' + element.price}</h4>
-            <img src={element.picture} alt="" />
-            <input
-              id="updatePrice"
-              placeholder="Update Price"
-              onChange={e => this.handleUpdatePrice(e.target.value)}
-            />
-            <button
-              onClick={() =>
-                this.updatePrice(element.product_id, this.state.price)
-              }
-            >
-              Update
-            </button>
-            <button onClick={() => this.deleteProduct(element.product_id)}>
-              Delete
-            </button>
+            <img src={element.picture} alt="add" />
+            <div>
+              <input
+                id="updatePrice"
+                placeholder="Update Price"
+                onChange={e => this.handleUpdatePrice(e.target.value)}
+              />
+              <button
+                onClick={() =>
+                  this.updatePrice(element.product_id, this.state.price)
+                }
+              >
+                Update
+              </button>
+              <button onClick={() => this.deleteProduct(element.product_id)}>
+                Delete
+              </button>
+            </div>
           </div>
         );
       });
