@@ -20,7 +20,7 @@ export default class Admin extends Component {
   }
 
   componentDidMount() {
-    axios.get('/api/products').then(response => {
+    return axios.get('/api/products').then(response => {
       console.log(response);
       this.setState({
         products: response.data
@@ -52,7 +52,7 @@ export default class Admin extends Component {
         picture: picture
       })
       .then(response => {
-        this.setState({ products: response.data.products });
+        this.setState({ products: response.data });
       });
   }
   handleUpdatePrice(value) {
@@ -66,6 +66,7 @@ export default class Admin extends Component {
       .put(`/api/product/${product_id}/`, { price })
       //price and product_id are correct up to this point
       .then(results => {
+        console.log(results);
         this.setState({ products: results.data });
 
         // products are not defined
