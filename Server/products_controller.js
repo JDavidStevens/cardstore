@@ -5,7 +5,7 @@ module.exports = {
 
     dbInstance
       .create_product([product_name, product_description, price, picture])
-      .then(() => res.status(200).send(products))
+      .then(products => res.status(200).send(products))
       .catch(err => {
         res.status(500).send({ errorMessage: 'Oops! Something went wrong.' });
         console.log(err);
@@ -60,7 +60,7 @@ module.exports = {
 
     dbInstance
       .delete_product([params.id])
-      .then(() => res.status(200).send(products))
+      .then(products => res.status(200).send(products))
       //changed from res.sendStatus(200)
       .catch(err => {
         res.status(500).send({ errorMessage: 'Oops! Something went wrong.' });
