@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { Grid, Row, Col, Button } from 'react-bootstrap';
+import './Shop.css';
 
 export default class Shop extends Component {
   constructor() {
@@ -22,15 +24,22 @@ export default class Shop extends Component {
   render() {
     let productDisplay = this.state.products.map((element, index) => {
       return (
-        <div className="product-container" key={index}>
-          <h2>{element.product_name}</h2>
-          <h3>{element.product_description}</h3>
-          <h3>{'$' + element.price}</h3>
-          <img src={element.picture} alt="" />
-          <button onClick={() => this.props.addToShoppingCart(element)}>
-            Purchase!
-          </button>
-        </div>
+        <Grid>
+          <Row className="product-container" key={index}>
+            <Col xs={12} sm={4} className="product-wrapper">
+              <h2>{element.product_name}</h2>
+              <h3>{element.product_description}</h3>
+              <img src={element.picture} alt="" className="pic" />
+              <h3>{'$' + element.price}</h3>
+              <Button
+                bsStyle="primary"
+                onClick={() => this.props.addToShoppingCart(element)}
+              >
+                Add to Cart!
+              </Button>
+            </Col>
+          </Row>
+        </Grid>
       );
     });
     return <div className="storefront-container">{productDisplay}</div>;

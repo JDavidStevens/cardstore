@@ -1,0 +1,18 @@
+.product-wrapper {
+  margin-bottom: 2em;
+}
+
+.pic {
+  width: 50%;
+}
+
+.btn-primary {
+  background-image: none;
+  border: 100px;
+  border-radius: 100px;
+  background-color: lightcoral;
+}
+
+h3 {
+  margin-bottom: 1em;
+}
