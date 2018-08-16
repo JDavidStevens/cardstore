@@ -7,11 +7,9 @@ class Checkout extends Component {
   onToken = token => {
     token.card = void 0;
     console.log('token', token);
-    axios
-      .post('http://localhost:3005/api/payment', { token, amount: 100 })
-      .then(response => {
-        alert('we are in business');
-      });
+    axios.post('/api/payment', { token, amount: 100 }).then(response => {
+      alert('we are in business');
+    });
   };
   render() {
     return (

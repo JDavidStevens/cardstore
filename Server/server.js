@@ -15,6 +15,7 @@ const axios = require('axios');
 require('dotenv').config();
 
 const app = express();
+app.use(express.static(`${__dirname}/../build`));
 
 app.use(bodyParser.json());
 app.use(cors());
