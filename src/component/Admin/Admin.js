@@ -90,34 +90,40 @@ export default class Admin extends Component {
           <Grid>
             <Row className="inventory-container" key={element.product_id}>
               <Col xs={12} sm={6} className="inventory-wrapper">
-                <h3>{element.product_name}</h3>
-                <h4>{element.product_description}</h4>
-                <h4>{'$' + element.price}</h4>
-                <div>
-                  <input
-                    id="updatePrice"
-                    placeholder="Update Price"
-                    onChange={e => this.handleUpdatePrice(e.target.value)}
-                  />
+                <h3>
+                  {element.product_name}
                   <Button
                     bsStyle="primary"
-                    onClick={() =>
-                      this.updatePrice(element.product_id, this.state.price)
-                    }
+                    onClick={() => this.deleteProduct(element.product_id)}
                   >
-                    Update
+                    Remove
                   </Button>
-                  <div>
-                    <br />
-                    <img src={element.picture} alt="add" className="pic" />
-                    <br />
+                </h3>
+
+                <h4>{element.product_description}</h4>
+                <div>
+                  <br />
+                  <img src={element.picture} alt="add" className="pic" />
+                  <br />
+                </div>
+                <div>
+                  <h4>
+                    {'$' + element.price}
+                    <input
+                      className="price-input"
+                      id="updatePrice"
+                      placeholder="Update Price"
+                      onChange={e => this.handleUpdatePrice(e.target.value)}
+                    />
                     <Button
                       bsStyle="primary"
-                      onClick={() => this.deleteProduct(element.product_id)}
+                      onClick={() =>
+                        this.updatePrice(element.product_id, this.state.price)
+                      }
                     >
-                      Remove
+                      Update
                     </Button>
-                  </div>
+                  </h4>
                 </div>
               </Col>
             </Row>
@@ -126,6 +132,10 @@ export default class Admin extends Component {
       });
     return (
       <div>
+        <div className="admin">
+          <h1>Current Inventory</h1>
+          {inventory}
+        </div>
         <div>
           <h3>Add a New Card:</h3>
           <input
@@ -155,10 +165,6 @@ export default class Admin extends Component {
           <Button bsStyle="primary" onClick={this.createNewCard}>
             Add
           </Button>
-        </div>
-        <div className="current-inventory">
-          <h1>Current Inventory</h1>
-          {inventory}
         </div>
         <Orders />
       </div>

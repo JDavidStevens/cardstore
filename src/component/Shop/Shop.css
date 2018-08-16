@@ -2,6 +2,9 @@
   margin-bottom: 2em;
 }
 
+.text {
+  color: lightcoral;
+}
 .pic {
   width: 50%;
 }

@@ -1,3 +1,7 @@
+.admin {
+  color: lightcoral;
+}
+
 .inventory-wrapper {
   margin-bottom: 2em;
 }
@@ -11,4 +15,10 @@
   border: 100px;
   border-radius: 100;
   background-color: aquamarine;
+  color: lightcoral;
+  margin: 5px;
+}
+
+.price-input {
+  margin: 5px;
 }

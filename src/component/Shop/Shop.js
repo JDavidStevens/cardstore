@@ -27,7 +27,7 @@ export default class Shop extends Component {
         <Grid>
           <Row className="product-container" key={index}>
             <Col xs={12} sm={6} className="product-wrapper">
-              <h2>{element.product_name}</h2>
+              <h2 className="text">{element.product_name}</h2>
               <h3>{element.product_description}</h3>
               <img src={element.picture} alt="" className="pic" />
               <h3>{'$' + element.price}</h3>
