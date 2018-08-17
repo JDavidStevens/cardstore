@@ -1,5 +1,6 @@
 .admin {
   color: lightcoral;
+  font-family: new century;
 }
 
 .inventory-wrapper {
@@ -14,17 +15,11 @@
   background-image: none;
   border: 100px;
   border-radius: 100;
-  background-color: aquamarine;
-  color: lightcoral;
+  background-color: aqua;
+  color: black;
   margin: 5px;
 }
 
 .price-input {
   margin: 5px;
-}
-
-.orders {
-  display: flex;
-  flex-direction: column-reverse;
-  justify-content: left;
 }

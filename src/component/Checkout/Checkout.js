@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import StripeCheckout from 'react-stripe-checkout';
-import stripe from './stripekey';
 import axios from 'axios';
 
 class Checkout extends Component {
@@ -16,7 +15,7 @@ class Checkout extends Component {
       <div className="Checkout">
         <StripeCheckout
           token={this.onToken}
-          stripeKey={stripe.pub_key}
+          stripeKey="pk_test_jwGtWQMpsyUYQMo7GcDUsAPr"
           amount={1000}
         />
       </div>

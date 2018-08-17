@@ -1,0 +1,15 @@
+.jumbotron {
+  background-color: lightcoral;
+  margin-left: 0;
+  text-align: center;
+  font-family: new century;
+  width: 100%;
+}
+
+.title {
+  color: aqua;
+}
+
+p {
+  color: aqua;
+}

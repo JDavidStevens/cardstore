@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { Slide } from 'react-slideshow-image';
-import { Jumbotron, Grid, Row, Col, Button } from 'react-bootstrap';
+import { div, Grid, Row, Col, Button, Jumbotron } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import './Home.css';
 
 export default class Home extends Component {
   constructor() {
@@ -40,13 +41,18 @@ export default class Home extends Component {
 
     return (
       <div className="home-landing">
+        <Jumbotron className="jumbotron">
+          <h1 className="title">Inkin' Cute Ideas!</h1>
+          <p>Handcrafted Cards for Every Occasion</p>
+        </Jumbotron>
         {Slideshow}
-        <br />
-        Please
-        <Button onClick={this.login} bsStyle="primary">
-          Login
-        </Button>
-        to Make a Purchase
+        <div className="login-prompt">
+          Please
+          <Button onClick={this.login} bsStyle="primary">
+            Login
+          </Button>
+          to Make a Purchase
+        </div>
       </div>
     );
   }

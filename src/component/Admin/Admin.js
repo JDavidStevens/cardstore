@@ -183,6 +183,7 @@ import axios from 'axios';
 import { Grid, Row, Col, Button } from 'react-bootstrap';
 import Orders from './orders';
 import NavBar from '../NavBar/NavBar';
+import Header from '../Header/Header';
 import './admin.css';
 
 export default class Admin extends Component {

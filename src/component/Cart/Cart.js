@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Checkout from '../Checkout/Checkout';
 import NavBar from '../NavBar/NavBar';
+// import Header from '../Header/Header';
 
 export default class Cart extends Component {
   constructor(props) {
@@ -41,6 +42,7 @@ export default class Cart extends Component {
 
     return (
       <div className="shopping-cart-container">
+        {/* <Header /> */}
         <NavBar />
         {shoppingCartDisplay[0] ? (
           shoppingCartDisplay

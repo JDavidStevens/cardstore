@@ -27,7 +27,9 @@ export default class NavBar extends Component {
     return (
       <Navbar default collapseOnSelect>
         <Navbar.Header>
-          <Navbar.Brand>Inkin' Cute Ideas</Navbar.Brand>
+          <Navbar.Brand>
+            <a>Inkin' Cute Ideas!</a>
+          </Navbar.Brand>
           <Navbar.Toggle />
         </Navbar.Header>
         <Navbar.Collapse>

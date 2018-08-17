@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { Grid, Row, Col, Button } from 'react-bootstrap';
 import NavBar from '../NavBar/NavBar';
+// import Title from '../Header/Header';
 import './Shop.css';
 
 export default class Shop extends Component {
@@ -45,6 +46,7 @@ export default class Shop extends Component {
     });
     return (
       <div className="storefront-container">
+        {/* <Title /> */}
         <NavBar />
         {productDisplay}
       </div>
