@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { Grid, Row, Col, Button } from 'react-bootstrap';
 import Orders from './orders';
+import AdminNav from './AdminNav';
 import './admin.css';
 
 export default class Admin extends Component {
@@ -132,41 +133,46 @@ export default class Admin extends Component {
       });
     return (
       <div>
+        <AdminNav />
         <div className="admin">
-          <h1>Current Inventory</h1>
-          {inventory}
+          <div className="inventory">
+            <h1>Current Inventory</h1>
+            {inventory}
+          </div>
+          <div>
+            <h3>Add a New Card:</h3>
+            <input
+              type="text"
+              id="new-card-name"
+              placeholder="Name"
+              onChange={e => this.handleNewCardName(e.target.value)}
+            />
+            <input
+              type="text"
+              id="new-card-description"
+              placeholder="Description"
+              onChange={e => this.handleNewCardDescription(e.target.value)}
+            />
+            <input
+              id="new-card-price"
+              placeholder="Price"
+              onChange={e => this.handleNewCardPrice(e.target.value)}
+            />
+            <br />
+            <input
+              type="text"
+              id="new-card-img"
+              placeholder="Image URL"
+              onChange={e => this.handleNewPicture(e.target.value)}
+            />
+            <Button bsStyle="primary" onClick={this.createNewCard}>
+              Add
+            </Button>
+          </div>
+          <div className="orders">
+            <Orders />
+          </div>
         </div>
-        <div>
-          <h3>Add a New Card:</h3>
-          <input
-            type="text"
-            id="new-card-name"
-            placeholder="Name"
-            onChange={e => this.handleNewCardName(e.target.value)}
-          />
-          <input
-            type="text"
-            id="new-card-description"
-            placeholder="Description"
-            onChange={e => this.handleNewCardDescription(e.target.value)}
-          />
-          <input
-            id="new-card-price"
-            placeholder="Price"
-            onChange={e => this.handleNewCardPrice(e.target.value)}
-          />
-          <br />
-          <input
-            type="text"
-            id="new-card-img"
-            placeholder="Image URL"
-            onChange={e => this.handleNewPicture(e.target.value)}
-          />
-          <Button bsStyle="primary" onClick={this.createNewCard}>
-            Add
-          </Button>
-        </div>
-        <Orders />
       </div>
     );
   }

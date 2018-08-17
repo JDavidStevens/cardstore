@@ -67,12 +67,12 @@ app.get('/auth/callback', async (req, res) => {
   if (foundUser[0]) {
     req.session.user = foundUser[0];
 
-    res.redirect('/');
+    res.redirect('/#/shop');
   } else {
     let createdUser = await db.create_customer([sub, name, email, picture]);
 
     req.session.user = createdUser[0];
-    res.redirect('/');
+    res.redirect('/#/shop');
   }
 });
 

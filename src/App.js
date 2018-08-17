@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import './App.css';
-import NavBar from './component/NavBar/NavBar';
 import Home from './component/Home/Home';
 import Cart from './component/Cart/Cart';
 import Shop from './component/Shop/Shop';
@@ -43,8 +42,6 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <NavBar />
-
         <Switch>
           <Route exact path="/" component={Home} />
           <Route

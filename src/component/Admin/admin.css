@@ -22,3 +22,9 @@
 .price-input {
   margin: 5px;
 }
+
+.orders {
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: left;
+}

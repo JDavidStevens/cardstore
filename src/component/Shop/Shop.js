@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { Grid, Row, Col, Button } from 'react-bootstrap';
+import NavBar from '../NavBar/NavBar';
 import './Shop.css';
 
 export default class Shop extends Component {
@@ -42,6 +43,11 @@ export default class Shop extends Component {
         </Grid>
       );
     });
-    return <div className="storefront-container">{productDisplay}</div>;
+    return (
+      <div className="storefront-container">
+        <NavBar />
+        {productDisplay}
+      </div>
+    );
   }
 }

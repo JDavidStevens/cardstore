@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Checkout from '../Checkout/Checkout';
+import CartNav from '../CartNav/CartNav';
 
 export default class Cart extends Component {
   constructor(props) {
@@ -40,6 +41,7 @@ export default class Cart extends Component {
 
     return (
       <div className="shopping-cart-container">
+        <CartNav />
         {shoppingCartDisplay[0] ? (
           shoppingCartDisplay
         ) : (
