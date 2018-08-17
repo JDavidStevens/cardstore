@@ -34,15 +34,15 @@ export default class NavBar extends Component {
           <Nav pullRight>
             {/* <NavItem eventKey={1} componentClass={Link} href="/" to="/">
               Home
-            </NavItem>
-            <NavItem eventKey={2} componentClass={Link} href="/shop" to="/shop">
-              Shop
             </NavItem> */}
-            <NavItem eventKey={1} componentClass={Link} href="/cart" to="/cart">
+            <NavItem eventKey={1} componentClass={Link} href="/shop" to="/shop">
+              Shop
+            </NavItem>
+            <NavItem eventKey={2} componentClass={Link} href="/cart" to="/cart">
               Cart
             </NavItem>
             <NavItem
-              eventKey={2}
+              eventKey={3}
               componentClass={Link}
               href="/"
               to="/"

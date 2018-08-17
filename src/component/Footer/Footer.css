@@ -1,10 +1,16 @@
+.footer-container {
+  /* position: fixed; */
+  display: flex;
+  flex-direction: column;
+}
+
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
   height: 25px;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  /* flex-direction: column; */
+  /* justify-content: center; */
+  /* align-items: center; */
   margin-left: 50%;
 }
 
