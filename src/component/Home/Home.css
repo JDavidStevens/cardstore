@@ -3,12 +3,12 @@
 }
 .jumbotron {
   background-color: lightcoral;
-  margin-left: 0;
   text-align: center;
   font-family: new century;
   width: 100%;
-  height: 200px;
+  height: 150px;
   margin: 0;
+  padding: 10px;
 }
 
 .title {
@@ -18,17 +18,38 @@
 p {
   color: aqua;
 }
-.slides {
-  padding: 10px 50px 10px 50px;
+
+.slide {
+  /* position: relative; */
+  /* width: 100vw; */
+  /* height: 50vh; */
+  padding-top: 30px;
+  /* box-shadow: 0 0 20px rgba(0, 0, 0, 0.4); */
 }
+/* .img {
+  margin: px auto;
+  position: relative;
+  width: 240px;
+  height: 50px;
+  padding: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+} */
+
+/* .slideshow {
+  margin-right: 50px;
+}
+.slideshow2 {
+  margin-left: 50px;
+} */
 
 .login-prompt {
+  font-weight: bolder;
   margin: 0;
   padding: 0;
   text-align: center;
   background-color: yellow;
   font-family: new century;
-  height: 300px;
+  height: relative;
 }
 .login {
   color: yellow;
@@ -43,7 +64,13 @@ p {
     height: 1000px;
   }
 } */
-@media (min-width: 800px) {
+
+@media (min-width: 768px) {
+  .slideshow {
+    margin-right: 50px;
+  }
+}
+@media (min-width: 500px) {
   .login-prompt {
     height: 50px;
   }
