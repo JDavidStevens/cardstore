@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { Grid, Row, Col, Button } from 'react-bootstrap';
 import NavBar from '../NavBar/NavBar';
-// import Title from '../Header/Header';
+
 import './Shop.css';
 
 export default class Shop extends Component {
@@ -16,7 +16,6 @@ export default class Shop extends Component {
 
   componentDidMount() {
     axios.get('/api/products').then(response => {
-      // console.log(response);
       this.setState({
         products: response.data
       });
@@ -30,7 +29,7 @@ export default class Shop extends Component {
           <Row className="product-container" key={index}>
             <Col xs={12} sm={6} className="product-wrapper">
               <h2 className="text">{element.product_name}</h2>
-              <h3>{element.product_description}</h3>
+              {/* <h3>{element.product_description}</h3> */}
               <img src={element.picture} alt="" className="pic" />
               <h3>{'$' + element.price}</h3>
               <Button
@@ -46,9 +45,8 @@ export default class Shop extends Component {
     });
     return (
       <div className="storefront-container">
-        {/* <Title /> */}
         <NavBar />
-        {productDisplay}
+        <body className="shop-landing">{productDisplay}</body>
       </div>
     );
   }

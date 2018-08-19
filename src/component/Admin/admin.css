@@ -1,10 +1,11 @@
 .admin {
-  color: lightcoral;
+  color: black;
   font-family: new century;
 }
 
 .inventory-wrapper {
   margin-bottom: 2em;
+  background-color: yellow;
 }
 
 .pic {

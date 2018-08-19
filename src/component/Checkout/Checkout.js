@@ -16,7 +16,6 @@ class Checkout extends Component {
         <StripeCheckout
           token={this.onToken}
           stripeKey="pk_test_jwGtWQMpsyUYQMo7GcDUsAPr"
-          amount={1000}
         />
       </div>
     );

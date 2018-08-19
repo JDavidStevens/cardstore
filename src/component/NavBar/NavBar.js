@@ -34,9 +34,6 @@ export default class NavBar extends Component {
         </Navbar.Header>
         <Navbar.Collapse>
           <Nav pullRight>
-            {/* <NavItem eventKey={1} componentClass={Link} href="/" to="/">
-              Home
-            </NavItem> */}
             <NavItem eventKey={1} componentClass={Link} href="/shop" to="/shop">
               Shop
             </NavItem>
